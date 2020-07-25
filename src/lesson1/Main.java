@@ -1,6 +1,10 @@
 package lesson1;
 
-import java.lang.constant.Constable;
+/**
+ * Homework for lesson #1
+ * @author Valeriy Lazarev
+ * @since   2020-07-25
+ */
 
 public class Main {
 
@@ -45,7 +49,6 @@ public class Main {
         leapYearCheck(1800);
         leapYearCheck(1900);
         leapYearCheck(2000);//<
-
     }
 
     /**
@@ -55,18 +58,9 @@ public class Main {
      * @param year - переменная содержащая год принадлежность которого к признаку "високосный" проверяет метод.
      */
     private static void leapYearCheck(int year) {
-        if (year % 100 == 0) {
-            if(year % 400 == 0){
-                System.out.println(year + " високосный");
-            } else {
-                System.out.println(year + " не високосный");
-            }
-        } else if (year % 4 == 0 ){
-            System.out.println(year + " високосный");
-        }
-        else {
-            System.out.println(year + " не високосный");
-        }
+        String s;
+        s = (year % 400 == 0 || year % 4 == 0) ? (year % 100 == 0 ^ year % 400 == 0) ? year + " Не високосный" : year + " високосный" : year + " Не високосный";
+        System.out.println(s);
     }
 
     /**
@@ -113,8 +107,6 @@ public class Main {
      * @param c - переменная;
      * @param d - переменная;
      */
-
-
     private static float calcMathExpression(int a, int b, int c, int d) {
         if (d != 0) {
             return a * (b + (c / d));
@@ -123,6 +115,4 @@ public class Main {
             return -1;
         }
     }
-
-
 }
