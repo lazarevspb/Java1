@@ -13,7 +13,7 @@ public class Main {
          *  1. Написать метод вычисляющий выражение a * (b + (c / d)) и возвращающий результат с плавающей точкой,
          * где a, b, c, d – целочисленные входные параметры этого метода;
          * */
-        System.out.println("calcMathExpression: " + calcMathExpression(2, 3, 4, 5));
+        System.out.println("calcMathExpression: " + calcMathExpression(2, 3, 4.0f, 5));
 
 
         /*
@@ -59,7 +59,7 @@ public class Main {
      */
     private static void leapYearCheck(int year) {
         String s;
-        s = (year % 400 == 0 || year % 4 == 0) ? (year % 100 == 0 ^ year % 400 == 0) ? year + " Не високосный" : year + " високосный" : year + " Не високосный";
+        s = (year % 400 == 0 || year % 4 == 0) ? (year % 100 == 0 ^ year % 400 == 0) ? year + " Невисокосный" : year + " Високосный" : year + " Невисокосный";
         System.out.println(s);
     }
 
@@ -107,7 +107,7 @@ public class Main {
      * @param c - переменная;
      * @param d - переменная;
      */
-    private static float calcMathExpression(int a, int b, int c, int d) {
+    private static float calcMathExpression(int a, int b, float c, int d) {
         if (d != 0) {
             return a * (b + (c / d));
         } else {
