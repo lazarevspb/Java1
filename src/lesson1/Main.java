@@ -13,7 +13,7 @@ public class Main {
          *  1. Написать метод вычисляющий выражение a * (b + (c / d)) и возвращающий результат с плавающей точкой,
          * где a, b, c, d – целочисленные входные параметры этого метода;
          * */
-        System.out.println("calcMathExpression: " + calcMathExpression(2, 3, 4.0f, 5));
+        System.out.println("calcMathExpression: " + calcMathExpression(2, 3, 4, 5));
 
 
         /*
@@ -91,8 +91,9 @@ public class Main {
      * Метод, принимающий на вход два целых числа, и проверяющий что их сумма лежит в пределах от 10 до 20(включительно),
      * если да – вернуть true, в противном случае – false;
      *
-     * @param i  - переменная;
-     * @param i1 - переменная;
+     * @param i  - целочисленная переменная типа int;
+     * @param i1 - целочисленная переменная типа int;
+     * @return - возвращает переменную типа boolean;
      */
     private static boolean valSumLimitCheck(int i, int i1) {
         return i + i1 > 10 && i + i1 <= 20;
@@ -102,14 +103,15 @@ public class Main {
      * Метод вычисляющий выражение a * (b + (c / d)) и возвращающий результат с плавающей точкой,
      * где a, b, c, d – целочисленные входные параметры этого метода;
      *
-     * @param a - переменная;
-     * @param b - переменная;
-     * @param c - переменная;
-     * @param d - переменная;
+     * @param a - целочисленная переменная типа int;
+     * @param b - целочисленная переменная типа int;
+     * @param c - целочисленная переменная типа int;
+     * @param d - целочисленная переменная типа int;
+     * @return - возвращает число с плавающей точккой float;
      */
-    private static float calcMathExpression(int a, int b, float c, int d) {
+    private static float calcMathExpression(int a, int b, int c, int d) {
         if (d != 0) {
-            return a * (b + (c / d));
+            return a * (b + ((float)(c / d)));
         } else {
             System.out.println("На ноль делить нельзя");
             return -1;
