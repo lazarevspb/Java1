@@ -60,15 +60,15 @@ public class Main {
 checkBalance ([10, 1, 2, 3, 4]) → true.
  */
         int[] arrInt6 = new int[]{2, 1, 1, 2, 1};
-        System.out.println(checkBalance(arrInt6));
+        System.out.println("Задание №6\n" + checkBalance(arrInt6) + "\n");
 
 /*
 7. **** Написать метод, которому на вход подается одномерный массив и число n (может быть положительным, или отрицательным),
 при этом метод должен сместить все элементымассива на n позиций. Для усложнения задачи нельзя пользоваться вспомогательными массивами.
 */
-        int[] arrInt7 = new int[]{3, 5, 6, 1};
+        int[] arrInt7 = new int[]{1, 2, 3, 4, 5};
         int shiftQuantity = -2;
-        arrayShift();
+        print(Arrays.toString(arrInt7), arrayShift(arrInt7, 1), 7);
     }
 
     /**
@@ -86,9 +86,9 @@ checkBalance ([10, 1, 2, 3, 4]) → true.
     /**
      * Метод передает в консоль форматированный вывод результатов работы других методов и служит для отладки их работы.
      *
-     * @param s
-     * @param i
-     * @param array
+     * @param s - переменная типа строка;
+     * @param i - переменная тип int;
+     * @param array - массив целочисленных переменных;
      */
     private static void print(String s, int i, int[] array, int task) {
         System.out.println("Задание №" + task + "\n" + Arrays.toString(array) + "\n" + s + " элемент массива: " + i + "\n");
@@ -97,37 +97,68 @@ checkBalance ([10, 1, 2, 3, 4]) → true.
     /**
      * Метод передает в консоль форматированный вывод результатов работы других методов и служит для отладки их работы.
      *
-     * @param firstArray
-     * @param secondArray
-     * @param task
+     * @param firstArray - массив целочисленных переменных;
+     * @param secondArray - массив целочисленных переменных;
+     * @param task - целочисленная переменная, номера задания;
      */
     private static void print(String firstArray, int[] secondArray, int task) {
         System.out.println("Задание №" + task + "\nИсходный массив:    " + firstArray + "\n" +
                 "Обновленный массив: " + Arrays.toString(secondArray) + "\n");
     }
 
-    private static void arrayShift() {
-        // TODO: 29.07.2020
+    /**
+     * Метод, которому на вход подается одномерный массив и число n (может быть положительным, или отрицательным),
+     * при этом метод должен сместить все элементымассива на n позиций.
+     *
+     * @param array - массив целочисленных переменных;
+     * @param shift - целочисленная переменная.
+     * @return - обработанный массив целочисленных переменных;
+     */
+
+    private static int[] arrayShift(int[] array, int shift) {
+        int tmp;
+        if (shift > -1) {
+            for (int i = shift; i > 0; i--) {
+                tmp = array[array.length - 1];
+                for (int j = array.length - 1; j > 0; j--) {
+                    array[j] = array[j - 1];
+                }
+                array[0] = tmp;
+            }
+        }
+        if (shift < 0) {
+            for (int i = shift; i < 0; i++) {
+                tmp = array[0];
+                for (int j = 0; j < array.length - 1; j++) {
+                    array[j] = array[j + 1];
+                }
+                array[array.length - 1] = tmp;
+            }
+        }
+
+
+
+        return array;
     }
 
     /**
      * Метод, в который передается не пустой одномерный целочисленный массив, возвращает true если в массиве есть место,
      * в котором сумма левой и правой части массива равны
-     * 
-     * @param array
-     * @return
+     *
+     * @param array - массив целочисленных переменных;
+     * @return - метод возвращает true, если в массиве есть место в котором сумма левой и правой части массива равны
      */
-    private static boolean checkBalance(int[] array) { //0, 1, 1, 0, 2, 1}
+    private static boolean checkBalance(int[] array) {
 
         if (array != null && array.length > 0) {
             int sumLeft = 0;
             for (int i = 0; i < array.length; i++) {
                 sumLeft += array[i];
                 int sumRight = 0;
-                for (int j = i+1; j < array.length; j++) {
+                for (int j = i + 1; j < array.length; j++) {
                     sumRight += array[j];
-                    }
-                if(sumLeft == sumRight){
+                }
+                if (sumLeft == sumRight) {
                     return true;
                 }
             }
@@ -137,10 +168,10 @@ checkBalance ([10, 1, 2, 3, 4]) → true.
     }
 
     /**
-     * метод поиска в массиве максимального элемента;
+     * Метод поиска в массиве максимального элемента;
      *
-     * @param array
-     * @return
+     * @param array - массив целочисленных переменных;
+     * @return - возвращает максимальный элемент массива.
      */
     private static int searchMax(int[] array) {
         int max = array[0];
@@ -159,8 +190,8 @@ checkBalance ([10, 1, 2, 3, 4]) → true.
     /**
      * метод поиска в массиве минимального элемента;
      *
-     * @param array
-     * @return
+     * @param array - массив целочисленных переменных;
+     * @return - возвращает минимальный элемент массива.
      */
     private static int searchMin(int[] array) {
         int min = array[0];
