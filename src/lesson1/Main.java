@@ -2,8 +2,9 @@ package lesson1;
 
 /**
  * Homework for lesson #1
+ *
  * @author Valeriy Lazarev
- * @since   2020-07-25
+ * @since 2020-07-25
  */
 
 public class Main {
@@ -15,40 +16,34 @@ public class Main {
          * */
         System.out.println("calcMathExpression: " + calcMathExpression(2, 3, 4, 5));
 
-
         /*
          * 2. Написать метод, принимающий на вход два целых числа, и проверяющий что их сумма лежит в пределах от 10 до 20(включительно),
          * если да – вернуть true, в противном случае – false;
          * */
-
         System.out.println("valSumLimitCheck: " + valSumLimitCheck(10, 2));
 
         /*
          * 3. Написать метод, которому в качестве параметра передается целое число, метод должен проверить положительное ли число передали,
          * или отрицательное. Замечание: ноль считаем положительным числом. Результат работы метода вывести в консоль
          * */
-        numberSignCheck(-10);
+        System.out.println((numberSignCheck(-1) ? "Положительное" : "Отрицательное") + " число");
+        System.out.println((numberSignCheck(0) ? "Положительное" : "Отрицательное") + " число");
+        System.out.println((numberSignCheck(1) ? "Положительное" : "Отрицательное") + " число");
 
         /*
          * 4. Написать метод, которому в качестве параметра передается строка, обозначающая имя, метод должен вернуть приветственное сообщение
          * «Привет, переданное_имя!»; Вывести приветствие в консоль.
          * */
-        printString("Иван");
+        System.out.println(printString("Иван"));
 
         /*
          * 5. Написать метод, который определяет является ли год високосным. Каждый 4-й год является високосным, кроме каждого 100-го,
          * при этом каждый 400-й – високосный. Для проверки работы вывести результаты работы метода в консоль
          * */
-        leapYearCheck(1600);//<
-        leapYearCheck(1604);//<
-        leapYearCheck(1605);
-        leapYearCheck(1606);
-        leapYearCheck(1607);
-        leapYearCheck(1608);//<
-        leapYearCheck(1700);
-        leapYearCheck(1800);
-        leapYearCheck(1900);
-        leapYearCheck(2000);//<
+        int[] year = {1600/**/ ,1605, 1606, 1607, 1608/**/ , 1700, 1800, 1900, 2000/**/ ,};
+        for (int value : year) {
+            System.out.println(value + " год является" + (leapYearCheck(value) ? " високосным" : " невисокосным"));
+        }
     }
 
     /**
@@ -56,11 +51,11 @@ public class Main {
      * при этом каждый 400-й – високосный. Для проверки работы вывести результаты работы метода в консоль
      *
      * @param year - переменная содержащая год принадлежность которого к признаку "високосный" проверяет метод.
+     * @return - возвращает переменную типа boolean;
      */
-    private static void leapYearCheck(int year) {
-        String s;
-        s = (year % 400 == 0 || year % 4 == 0) ? (year % 100 == 0 ^ year % 400 == 0) ? year + " Невисокосный" : year + " Високосный" : year + " Невисокосный";
-        System.out.println(s);
+    private static boolean leapYearCheck(int year) {
+        return (year % 4 == 0 && (!(year % 100 == 0) ^ year % 400 == 0));
+
     }
 
     /**
@@ -68,10 +63,11 @@ public class Main {
      * «Привет, переданное_имя!»;
      * Вывести приветствие в консоль.
      *
-     * @param s - переменная;
+     * @param name - переменная;
+     * @return - возвращает переменную типа String.
      */
-    private static void printString(String s) {
-        System.out.println("Привет, " + s + "!");
+    private static String printString(String name) {
+        return "Привет, " + name + "!";
     }
 
     /**
@@ -80,11 +76,10 @@ public class Main {
      * Замечание: ноль считаем положительным числом. Результат работы метода вывести в консоль
      *
      * @param i - переменная, значение которой будет проверять метод;
+     * @return - возвращает переменную типа boolean;
      */
-    private static void numberSignCheck(int i) {
-        String s = "Переменная i - ";
-        s += (i >= 0) ? "положительная" : "отрицательная";
-        System.out.println(s);
+    private static boolean numberSignCheck(int i) {
+        return i > -1;
     }
 
     /**
@@ -110,11 +105,6 @@ public class Main {
      * @return - возвращает число с плавающей точккой float;
      */
     private static float calcMathExpression(int a, int b, int c, int d) {
-        if (d != 0) {
-            return a * (b + ((float)(c / d)));
-        } else {
-            System.out.println("На ноль делить нельзя");
-            return -1;
-        }
+            return a * (b + ((c * 0.1f) / d));
     }
 }
