@@ -18,40 +18,44 @@ public class Main {
 1 на 0;
 */
         int[] arrInt = new int[]{1, 1, 0, 0, 1, 0, 1, 1, 0, 0};
-        print(Arrays.toString(arrInt), changeArrInt(arrInt), 1);
+        System.out.println("#1: " + Arrays.toString(arrInt));
+        changeArrInt(arrInt);
+        System.out.println("#1: " + Arrays.toString(arrInt) + "\n");
 
 /*
 2 Задать пустой целочисленный массив размером 8. Написать метод, который помощью цикла заполнит его значениями 1 4 7 10 13 16 19 22;
 */
         int[] arrInt2 = new int[8];
-        print(Arrays.toString(arrInt2), fillArrInt(arrInt2), 2);
+        System.out.println("#2: " + Arrays.toString(arrInt2));
+        fillArrInt(arrInt2);
+        System.out.println("#2: " + Arrays.toString(arrInt2) + "\n");
+
 
 /*
 3 Задать массив [ 1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1 ], написать метод, принимающий на вход массив и умножающий числа меньше 6 на 2;
 */
         int[] arrInt3 = new int[]{1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
-        print(Arrays.toString(arrInt3), multiplyByTwo(arrInt3), 3);
+        System.out.println("#3: " + Arrays.toString(arrInt3));
+        multiplyByTwo(arrInt3);
+        System.out.println("#3: " + Arrays.toString(arrInt3) + "\n");
+
 
 /*
 4 Задать одномерный массив. Написать методы поиска в нём минимального и максимального элемента;
 */
         int[] arrInt4 = new int[]{18, 13, 5, 3, 2, 11, 4, 25, -2, 2, 4, 8, 49, 12, -10, 32};
-        print("Минимальный ", searchMin(arrInt4), arrInt4, 4);
-        print("Максимальный ", searchMax(arrInt4), arrInt4, 4);
+        print("Минимальный", searchMin(arrInt4), arrInt4, 4.1f);
+        print("Максимальный", searchMax(arrInt4), arrInt4, 4.2f);
 
 /*
 5 * Создать квадратный целочисленный массив (количество строк и столбцов одинаковое), заполнить его диагональные элементы единицами, используя цикл(ы);
 */
         int[][] arrInt5 = new int[5][5];
         for (int i = 0; i < arrInt5.length; i++) {
-            for (int j = 0; j < arrInt5[i].length; j++) {
-                if (i == j) {
-                    arrInt5[i][j] = 1;
-                } else if (j == (arrInt5.length - i - 1)) {
-                    arrInt5[i][j] = 1;
-                }
-            }
+            arrInt5[i][i] = 1;
+            arrInt5[i][arrInt5.length - i - 1] = 1;
         }
+        System.out.println("#5");
         printMultiArray(arrInt5);
 
 /*
@@ -59,16 +63,18 @@ public class Main {
 в котором сумма левой и правой части массива равны. Примеры: checkBalance([1, 1, 1, 2, 1]) → true, checkBalance ([2, 1, 1, 2, 1]) → false,
 checkBalance ([10, 1, 2, 3, 4]) → true.
  */
-        int[] arrInt6 = new int[]{2, 1, 1, 2, 1};
-        System.out.println("Задание №6\n" + checkBalance(arrInt6) + "\n");
+        int[] arrInt6 = new int[]{1, 1, 1, 2, 1};
+        System.out.println("#6\n" + "Массив " + (checkBalance(arrInt6) ? "сбалансирован" : "несбалансирован") + "\n");
 
 /*
 7. **** Написать метод, которому на вход подается одномерный массив и число n (может быть положительным, или отрицательным),
 при этом метод должен сместить все элементымассива на n позиций. Для усложнения задачи нельзя пользоваться вспомогательными массивами.
 */
         int[] arrInt7 = new int[]{1, 2, 3, 4, 5};
-        int shiftQuantity = -2;
-        print(Arrays.toString(arrInt7), arrayShift(arrInt7, 1), 7);
+        int shiftQuantity = -3;
+        System.out.printf("#7\n%s%19s\n", "Исходный массив: ", Arrays.toString(arrInt7));
+        arrayShift(arrInt7, shiftQuantity);
+        System.out.println("Смещеие " + shiftQuantity + " элемента: " + Arrays.toString(arrInt7));
     }
 
     /**
@@ -86,24 +92,12 @@ checkBalance ([10, 1, 2, 3, 4]) → true.
     /**
      * Метод передает в консоль форматированный вывод результатов работы других методов и служит для отладки их работы.
      *
-     * @param s - переменная типа строка;
-     * @param i - переменная тип int;
+     * @param s     - переменная типа строка;
+     * @param i     - переменная тип int;
      * @param array - массив целочисленных переменных;
      */
-    private static void print(String s, int i, int[] array, int task) {
-        System.out.println("Задание №" + task + "\n" + Arrays.toString(array) + "\n" + s + " элемент массива: " + i + "\n");
-    }
-
-    /**
-     * Метод передает в консоль форматированный вывод результатов работы других методов и служит для отладки их работы.
-     *
-     * @param firstArray - массив целочисленных переменных;
-     * @param secondArray - массив целочисленных переменных;
-     * @param task - целочисленная переменная, номера задания;
-     */
-    private static void print(String firstArray, int[] secondArray, int task) {
-        System.out.println("Задание №" + task + "\nИсходный массив:    " + firstArray + "\n" +
-                "Обновленный массив: " + Arrays.toString(secondArray) + "\n");
+    private static void print(String s, int i, int[] array, float task) {
+        System.out.println("#" + task + "\n" + Arrays.toString(array) + "\n" + s + " элемент массива: " + i + "\n");
     }
 
     /**
@@ -111,34 +105,19 @@ checkBalance ([10, 1, 2, 3, 4]) → true.
      * при этом метод должен сместить все элементымассива на n позиций.
      *
      * @param array - массив целочисленных переменных;
-     * @param shift - целочисленная переменная.
-     * @return - обработанный массив целочисленных переменных;
+     * @param shift - целочисленная переменная отвечающая за сдвиг массива.
      */
 
-    private static int[] arrayShift(int[] array, int shift) {
-        int tmp;
-        if (shift > -1) {
-            for (int i = shift; i > 0; i--) {
-                tmp = array[array.length - 1];
-                for (int j = array.length - 1; j > 0; j--) {
-                    array[j] = array[j - 1];
-                }
-                array[0] = tmp;
+    private static void arrayShift(int[] array, int shift) {
+        if (shift % array.length == 0) return;
+        if (shift < 0) shift += array.length;
+        for (int i = shift; i > 0; i--) {
+            int tmp = array[array.length - 1];
+            for (int j = array.length - 1; j > 0; j--) {
+                array[j] = array[j - 1];
             }
+            array[0] = tmp;
         }
-        if (shift < 0) {
-            for (int i = shift; i < 0; i++) {
-                tmp = array[0];
-                for (int j = 0; j < array.length - 1; j++) {
-                    array[j] = array[j + 1];
-                }
-                array[array.length - 1] = tmp;
-            }
-        }
-
-
-
-        return array;
     }
 
     /**
@@ -196,9 +175,7 @@ checkBalance ([10, 1, 2, 3, 4]) → true.
     private static int searchMin(int[] array) {
         int min = array[0];
         if (array != null) {
-
             for (int i = 0; i < array.length; i++) {
-
                 if (i > 0) {
                     if (array[i] < min) {
                         min = array[i];
@@ -213,9 +190,8 @@ checkBalance ([10, 1, 2, 3, 4]) → true.
      * Метод, принимающий на вход массив и умножающий числа меньше 6 на 2;
      *
      * @param array - целочисленный массив;
-     * @return - меотод возвращает - целочисленный массив;
      */
-    private static int[] multiplyByTwo(int[] array) {
+    private static void multiplyByTwo(int[] array) {
         if (array != null) {
             for (int i = 0; i < array.length; i++) {
                 if (array[i] < 6) {
@@ -223,33 +199,29 @@ checkBalance ([10, 1, 2, 3, 4]) → true.
                 }
             }
         }
-        return array;
     }
 
     /**
      * Метод, который с помощью цикла заполнит массив значениями 1 4 7 10 13 16 19 22;
      *
      * @param array - пустой целочисленный массив размером 8;
-     * @return - меотод возвращает - целочисленный массив;
      */
-    private static int[] fillArrInt(int[] array) {
-        int k = 1;
+    private static void fillArrInt(int[] array) {
+
         if (array != null) {
             for (int i = 0; i < array.length; i++) {
-                array[i] += k;
-                k += 3;
+                array[i] += 3 * i + 1;
+
             }
         }
-        return array;
     }
 
     /**
      * Метод, заменяющий в принятом массиве 0 на 1, 1 на 0;
      *
      * @param array - массив, состоящий из элементов 0 и 1.
-     * @return - меотод возвращает - целочисленный массив;
      */
-    private static int[] changeArrInt(int[] array) {
+    private static void changeArrInt(int[] array) {
         if (array != null) {
             for (int i = 0; i < array.length; i++) {
                 if (array[i] == 0) {
@@ -257,6 +229,5 @@ checkBalance ([10, 1, 2, 3, 4]) → true.
                 } else array[i] = 0;
             }
         }
-        return array;
     }
 }
