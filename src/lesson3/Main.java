@@ -39,6 +39,7 @@ public class Main {
             }
             printMap();
         }
+        SCANNER.close();
     }
 
     private static boolean checkEndGame(char c, String s) {
@@ -79,17 +80,17 @@ public class Main {
                 arrayStateByte[6] += (sign == square[i][j]) ? rateByte[j] : 0;                   //строки
                 arrayStateByte[7] += (sign == square[j][i]) ? rateByte[j] : 0;                   //столбцы
 
-                for (byte b : arrayStateByte) {
+                for (byte b : arrayStateByte) {                        // Поиск возможно возникших выиграшных комбинаций
                     if (b % divider == 0 && b != 0) {
                         return true;
                     }
                 }
             }
-            for (int l = 6; l < arrayStateByte.length; l++) {
+            for (int l = 6; l < arrayStateByte.length; l++) {        // очистка временных переменных столбцов и строк
                 arrayStateByte[l] = (byte) 0;
             }
         }
-        Arrays.fill(arrayStateByte, (byte) 0);
+        Arrays.fill(arrayStateByte, (byte) 0);                          //Очистка всего временного массива
         return false;
     }
 
@@ -106,7 +107,7 @@ public class Main {
 
     /**
      * Тут определяется алгоритм ответного хода с учетом приоретеа расположенных фишек на поле.
-     * Например: три "0" подряд для ИИ приоретентие трех "Х".  Тоесть ИИ будет пытаться завершить игру попедой,
+     * Например: три "0" подряд для ИИ приоретентие трех "Х". Тоесть ИИ будет пытаться завершить игру победой,
      * если такой "выбор" будет предостален.
      */
     private static void aiTurn() {
@@ -123,9 +124,7 @@ public class Main {
         } else if (countingElements(DOT_O, (byte) 0b0001)) {
             return;
         } else {
-
             do {
-
                 do {
                     x = RANDOM.nextInt(SIZE - 2) + 1; //Постараться поставить первый нолик в центр карты, чтобы получить преимущесвто над противником
                     y = RANDOM.nextInt(SIZE - 2) + 1;
@@ -135,7 +134,6 @@ public class Main {
             } while (!(validation(x, y) && isEmpty(x, y)));
             square[x][y] = DOT_O;
         }
-
     }
 
     private static void humanTurn() {
@@ -154,10 +152,8 @@ public class Main {
     }
 
     private static boolean validation(int x, int y) {
-
         return SIZE > x && x > -1 && SIZE > y && y > -1;
     }
-
 
     private static void printMap() {
         System.out.print('0');
@@ -180,15 +176,14 @@ public class Main {
             for (int j = 0; j < SIZE; j++) {
                 square[i][j] = DOT_EMPTY;
             }
-
         }
     }
 
     /**
      * Метод, в котором ИИ ведет подсчет расположенных фишек на поле.
      *
-     * @param c - Символ для которого считаются комбинации.
-     * @param divider - делитель, нужен для определения приоретеа сложившихся комбинаций на поле.
+     * @param c       - Символ для которого считаются комбинации.
+     * @param divider - делитель, нужен для поиска и определения приоретеа сложившихся комбинаций на поле.
      * @return - в случае найденной комбинации фишек(считающейся приорететной)
      * и поставленной своей фишкой на поле возвращает true
      */
@@ -197,21 +192,23 @@ public class Main {
         byte[] rateAIbyte = new byte[]{0b1, 0b10, 0b100, 0b1000, 0b10000,};
 
         for (int i = 0; i < square.length; i++) {
-            arrayAIbyte[0] += (c == square[i][i]) ? rateAIbyte[i] : 0;                     //левая диагональ
-            arrayAIbyte[1] += (c == square[i][square.length - i - 1]) ? rateAIbyte[i] : 0; //правая диагональ
+            arrayAIbyte[0] += (c == square[i][i]) ? rateAIbyte[i] : 0;                                  //левая диагональ
+            arrayAIbyte[1] += (c == square[i][square.length - i - 1]) ? rateAIbyte[i] : 0;               //правая диагональ
 
             if (i < SIZE - 1) {
-                arrayAIbyte[2] += (c == square[i + 1][i]) ? rateAIbyte[i] : 0; //левая полудиагональ низ
-                arrayAIbyte[3] += (c == square[i][i + 1]) ? rateAIbyte[i] : 0; //левая полудиагональ верх
-                arrayAIbyte[4] += (c == square[SIZE - i - 1][i + 1]) ? rateAIbyte[i] : 0; //Правая полудиагональ, низ
-                arrayAIbyte[5] += (c == square[SIZE - i - 2][i]) ? rateAIbyte[i] : 0; //Прпавая полудиагональ, верх
+                arrayAIbyte[2] += (c == square[i + 1][i]) ? rateAIbyte[i] : 0;              //левая полудиагональ низ
+                arrayAIbyte[3] += (c == square[i][i + 1]) ? rateAIbyte[i] : 0;              //левая полудиагональ верх
+                arrayAIbyte[4] += (c == square[SIZE - i - 1][i + 1]) ? rateAIbyte[i] : 0;   //Правая полудиагональ, низ
+                arrayAIbyte[5] += (c == square[SIZE - i - 2][i]) ? rateAIbyte[i] : 0;       //Прпавая полудиагональ, верх
             }
 
             for (int j = 0; j < square.length; j++) {
-                arrayAIbyte[6] += (c == square[i][j]) ? rateAIbyte[j] : 0; //строки
-                arrayAIbyte[7] += (c == square[j][i]) ? rateAIbyte[j] : 0; //столбцы
-
-
+                arrayAIbyte[6] += (c == square[i][j]) ? rateAIbyte[j] : 0;                  //строки
+                arrayAIbyte[7] += (c == square[j][i]) ? rateAIbyte[j] : 0;                  //столбцы
+/*
+Ниже идет настройка поведения при выборе положения выставлемой на поле фишки во всех плосокостях где могут возникнуть
+ комбинации требующие внимания в рамках заданного приоретета divider передаваемого из метода aiTurn().
+* */
                 for (int k = 0; k < arrayAIbyte.length; k++) {
                     if (arrayAIbyte[k] % divider == 0 && arrayAIbyte[k] != 0) {
 
