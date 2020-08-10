@@ -3,16 +3,19 @@ package lesson5;
 import java.util.Random;
 
 /**
- * Класс Собака с наследованием от класса Животное.
+ * Класс Кот с наследованием от класса Животное.
  */
 public class Cat extends Animal {
+    /**
+     * Переменная для формирования случайных ограничений для полей животного
+     */
     private Random random = new Random();
 
     /**
      * Метод, формирующий конструктор Кота
      *
-     * @param name  - строковая переменная содержащая имя Кота.
-     * @param color - строковая переменная содержащая цвет шерстки Кота.
+     * @param name  строковая переменная содержащая имя Кота.
+     * @param color строковая переменная содержащая цвет шерстки Кота.
      */
     public Cat(String name, String color) {
         super(name, color);
@@ -23,7 +26,7 @@ public class Cat extends Animal {
     /**
      * Метод, переопределяющий родительский метод животного.
      *
-     * @param swimLengthValue - параметр нигде не используется, потомучто кот не умеет плавать, он же Кот.
+     * @param swimLengthValue параметр нигде не используется, потомучто кот не умеет плавать, он же Кот.
      */
     @Override
     protected void swim(int swimLengthValue) {
@@ -33,7 +36,7 @@ public class Cat extends Animal {
     /**
      * Метод, формирующий полную информацию о сущности.
      *
-     * @return - Возвращает строковую переменную.
+     * @return Возвращает строковую переменную.
      */
     @Override
     public String fullInfo() {

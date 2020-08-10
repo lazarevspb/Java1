@@ -6,12 +6,16 @@ import java.util.Random;
  * Класс Собака с наследованием от класса Животное.
  */
 public class Dog extends Animal {
+    /**
+     * Переменная для формирования случайных ограничений для полей животного
+     */
     private Random random = new Random();
+
     /**
      * Метод, формирующий конструктор Пса
      *
-     * @param name - строковая переменная содержащая имя Пса.
-     * @param color - строковая переменная содержащая цвет шерстки Пса.
+     * @param name  строковая переменная содержащая имя Пса.
+     * @param color строковая переменная содержащая цвет шерстки Пса.
      */
     public Dog(String name, String color) {
 
@@ -24,7 +28,7 @@ public class Dog extends Animal {
     /**
      * Метод, формирующий полную информацию о сущности.
      *
-     * @return - Возвращает строковую переменную.
+     * @return Возвращает строковую переменную.
      */
     @Override
     protected String fullInfo() {

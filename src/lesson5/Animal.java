@@ -1,11 +1,20 @@
 package lesson5;
 
 /* √ 1.Создать классы Собака и Кот с наследованием от класса Животное. */
+
+/**
+ * Абстрактный класс Животное.
+ */
 public abstract class Animal {
+    /**Поле устанавливает ограничение длинны плавания Животного.*/
     private int swimLength;
+    /** Поле устанавливает имя Животного. */
     private String name;
+    /**Поле устанавливает цвет шерстки Животного.*/
     private String color;
+    /**Поле устанавливает ограничение на высоту прыжка Животного*/
     private float jumpHeight;
+    /**Поле устанавливает ограничение длинны пробега Животного*/
     private int runLength;
 
     public int getSwimLength() {
@@ -40,6 +49,12 @@ public abstract class Animal {
         this.runLength = runLength;
     }
 
+    /**
+     * В конструктор Животного передается два параметра.
+     *
+     * @param name строковая переменная имя Животного.
+     * @param color строковая переменная цвет шерстки Животного.
+     */
     public Animal(String name, String color) {
         this.name = name;
         this.color = color;
@@ -53,7 +68,7 @@ public abstract class Animal {
      * Метод, в котором проверяется заданный параметр на соответсвие с ограничением у конкретной сущности
      * и выводящий соответсвуюший результат в консоль.
      *
-     * @param runLenthValue - целочисленная переменная.
+     * @param runLenthValue целочисленная переменная.
      */
     protected void run(int runLenthValue) {
         if (runLenthValue <= this.getRunLength()) {
@@ -69,7 +84,7 @@ public abstract class Animal {
      * Метод, в котором проверяется заданный параметр на соответсвие с ограничением у конкретной сущности
      * и выводящий соответсвуюший результат в консоль.
      *
-     * @param jumpHeightValue - целочисленная переменная.
+     * @param jumpHeightValue целочисленная переменная.
      */
     protected void jump(float jumpHeightValue) {
         if (jumpHeightValue <= this.getJumpHeight()) {
@@ -85,7 +100,7 @@ public abstract class Animal {
      * Метод, в котором проверяется заданный параметр на соответсвие с ограничением у конкретной сущности
      * и выводящий соответсвуюший результат в консоль.
      *
-     * @param swimLengthValue - целочисленная переменная.
+     * @param swimLengthValue целочисленная переменная.
      */
     protected void swim(int swimLengthValue) {
         if (swimLengthValue <= this.getSwimLength()) {
@@ -100,7 +115,7 @@ public abstract class Animal {
     /**
      * Абстрактный метод, назначение которого - формировать полную информацию о сущности.
      *
-     * @return - Возвращает строковую переменную.
+     * @return Возвращает строковую переменную.
      */
     protected abstract String fullInfo();
 }
