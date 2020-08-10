@@ -1,6 +1,6 @@
 package lesson5;
 
-
+/* √ 1.Создать классы Собака и Кот с наследованием от класса Животное. */
 public abstract class Animal {
     private int swimLength;
     private String name;
@@ -40,19 +40,67 @@ public abstract class Animal {
         this.runLength = runLength;
     }
 
-
     public Animal(String name, String color) {
         this.name = name;
         this.color = color;
     }
 
-    protected abstract void run();
+    /* 2. Животные могут выполнять действия: бежать, плыть, перепрыгивать препятствие.
+     В качестве параметра каждому методу передается величина, означающая или длину препятствия (для бега и плавания),
+      или высоту (для прыжков). */
 
-    protected abstract void jump();
+    /**
+     * Метод, в котором проверяется заданный параметр на соответсвие с ограничением у конкретной сущности
+     * и выводящий соответсвуюший результат в консоль.
+     *
+     * @param runLenthValue - целочисленная переменная.
+     */
+    protected void run(int runLenthValue) {
+        if (runLenthValue <= this.getRunLength()) {
+            System.out.printf("%s бежит на %d метров.\n", this.getName(), runLenthValue);
+        } else {
+            System.out.printf("%s: расстояние %d метров для меня слишком большое, увы, " +
+                            "я могу пробежать только - %d метров.\n",
+                    this.getName(), runLenthValue, this.getRunLength());
+        }
+    }
 
-    protected abstract void swim();
+    /**
+     * Метод, в котором проверяется заданный параметр на соответсвие с ограничением у конкретной сущности
+     * и выводящий соответсвуюший результат в консоль.
+     *
+     * @param jumpHeightValue - целочисленная переменная.
+     */
+    protected void jump(float jumpHeightValue) {
+        if (jumpHeightValue <= this.getJumpHeight()) {
+            System.out.printf("%s прыгает на %.1f метра.\n", this.getName(), this.getJumpHeight());
+        } else {
+            System.out.printf("%s: высота %.2f метров для меня слишком высоко, увы, " +
+                            "я могу прыгнуть только - %.2f метров.\n",
+                    this.getName(), jumpHeightValue, this.getJumpHeight());
+        }
+    }
 
+    /**
+     * Метод, в котором проверяется заданный параметр на соответсвие с ограничением у конкретной сущности
+     * и выводящий соответсвуюший результат в консоль.
+     *
+     * @param swimLengthValue - целочисленная переменная.
+     */
+    protected void swim(int swimLengthValue) {
+        if (swimLengthValue <= this.getSwimLength()) {
+            System.out.printf("%s плывет на %d метров.\n", this.getName(), this.getSwimLength());
+        } else {
+            System.out.printf("%s: расстояние %d метров для меня слишком большое, увы, " +
+                            "я могу проплыть только - %d метров.\n",
+                    this.getName(), swimLengthValue, this.getSwimLength());
+        }
+    }
+
+    /**
+     * Абстрактный метод, назначение которого - формировать полную информацию о сущности.
+     *
+     * @return - Возвращает строковую переменную.
+     */
     protected abstract String fullInfo();
-
-
 }
