@@ -29,8 +29,9 @@ public class Cat extends Animal {
      * @param swimLengthValue параметр нигде не используется, потомучто кот не умеет плавать, он же Кот.
      */
     @Override
-    protected void swim(int swimLengthValue) {
+    protected boolean swim(int swimLengthValue) {
         System.out.printf("%s: я не умею плавать, я же кот!\n", this.getName());
+        return false;
     }
 
     /**
@@ -44,6 +45,6 @@ public class Cat extends Animal {
                 getName() + ", я - кот и я имею " +
                 getColor() + " цвет шерстки, и я прыгаю на " +
                 this.getJumpHeight() + " метра, а бегаю я на " +
-                this.getRunLength() + " метра";
+                this.getRunLength() + " метров.";
     }
 }

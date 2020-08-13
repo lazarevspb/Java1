@@ -36,6 +36,6 @@ public class Dog extends Animal {
                 getName() + ", я - пёс и я имею " +
                 getColor() + " цвет шерстки, и я прыгаю на " +
                 this.getJumpHeight() + " метра, а бегаю я на " +
-                this.getRunLength() + " метра";
+                this.getRunLength() + " метров.";
     }
 }
