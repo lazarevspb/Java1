@@ -10,7 +10,6 @@ import java.util.Scanner;
  * Класс содержащий в себе методы для работы со строками;
  */
 public class StringMethod {
-    private static StringBuilder stringBuilder = new StringBuilder();
 
     /**
      * Метод, склеивающий два строковых ресурса. Добавляет перенос строки между склеиваемыми кусками текста.
@@ -21,6 +20,7 @@ public class StringMethod {
      * @throws FileNotFoundException исключение обрабатывается в вызывающем методе;
      */
     protected static StringBuilder mergeTextMethod(String textFile1, String textFile2) throws FileNotFoundException {
+        StringBuilder stringBuilder = new StringBuilder();
         return stringBuilder.append(getTextFromFile(textFile1)).append("\n").append(getTextFromFile(textFile2));
     }
 
@@ -65,7 +65,7 @@ public class StringMethod {
      * @return в случае успешной записи (если удалось создать файл) возвращает true;
      * @throws FileNotFoundException исключение обрабатывается в вызывающем методе;
      */
-    protected static boolean getPrintStream(String name, String resources) throws FileNotFoundException {
+    protected static boolean createTextFile(String name, String resources) throws FileNotFoundException {
         File file = new File(name);
         PrintStream printStream;
         printStream = new PrintStream(name);
