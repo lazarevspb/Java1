@@ -34,8 +34,8 @@ public class StringMethod {
     protected static String[] getsArr(String fileName) throws FileNotFoundException {
         String[] s;
         s = getTextFromFile(fileName).toString()
-                .toLowerCase().replaceAll("\\W+", " ")
-                .split("(\\s|,|!|'|`|\\.)");
+                .toLowerCase().replaceAll("\\W+", " ") // удаляет все не слова и заменяет их на пробел
+                .split("(\\s|,|!|'|`|\\.)"); //разбивает на подстроки при выявлении символов
         return s;
     }
 
@@ -52,6 +52,7 @@ public class StringMethod {
         while (scanner.hasNext()) {
             stringBuilder.append(scanner.nextLine()).append("\n");
         }
+        scanner.close();
         return stringBuilder;
     }
 
@@ -61,7 +62,7 @@ public class StringMethod {
      * @param name      строковая переменная - имя файла в который юудет записан переданный текст,
      *                  если файла не существует, то он будет создан;
      * @param resources строковая переменная содержащая текст, который будет записан в файл.
-     * @return в случае успешной записи возвращает true;
+     * @return в случае успешной записи (если удалось создать файл) возвращает true;
      * @throws FileNotFoundException исключение обрабатывается в вызывающем методе;
      */
     protected static boolean getPrintStream(String name, String resources) throws FileNotFoundException {
@@ -69,6 +70,8 @@ public class StringMethod {
         PrintStream printStream;
         printStream = new PrintStream(name);
         printStream.print(resources);
+        printStream.flush();
+        printStream.close();
         return file.exists();
     }
 }
