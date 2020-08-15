@@ -12,16 +12,17 @@ import java.util.Scanner;
 public class StringMethod {
 
     /**
-     * Метод, склеивающий два строковых ресурса. Добавляет перенос строки между склеиваемыми кусками текста.
+     * Метод, склеивающий два строковых ресурса.
      *
      * @param textFile1 переменная типа строка - основная часть текста;
      * @param textFile2 Переменная типа строка - "приклеиваемая" часть тексат;
      * @return возвращает объект класса StringBuilder;
      * @throws FileNotFoundException исключение обрабатывается в вызывающем методе;
      */
-    protected static StringBuilder mergeTextMethod(String textFile1, String textFile2) throws FileNotFoundException {
+    protected static StringBuilder mergeTextMethod(String textFile1, String textFile2)
+            throws FileNotFoundException {
         StringBuilder stringBuilder = new StringBuilder();
-        return stringBuilder.append(getTextFromFile(textFile1)).append("\n").append(getTextFromFile(textFile2));
+        return stringBuilder.append(getTextFromFile(textFile1)).append(getTextFromFile(textFile2));
     }
 
     /**

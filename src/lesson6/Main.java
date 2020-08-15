@@ -23,8 +23,8 @@ public class Main extends SubStringSearchInDirectory {
 
         try {
             /*Создать 2 текстовых файла, примерно по 50-100 символов в каждом(особого значения не имеет);*/
-            getPrintStream("treasure_Island1.txt", stringResources.getTreasureIsland());
-            getPrintStream("treasure_Island2.txt", stringResources.getTreasureIsland2());
+            createTextFile("treasure_Island1.txt", stringResources.getTreasureIsland());
+            createTextFile("treasure_Island2.txt", stringResources.getTreasureIsland2());
 
             /*Написать программу, «склеивающую» эти файлы, то есть вначале идет текст из первого файла,
              потом текст из второго.*/
