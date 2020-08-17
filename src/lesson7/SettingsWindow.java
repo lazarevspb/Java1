@@ -20,7 +20,7 @@ public class SettingsWindow extends JFrame {
     private static final int MIN_FIELD_SIZE = 3;
     private static final int MAX_FIELD_SIZE = 10;
     private static final String FIELD_SIZE_PREFIX = "Размер поля: ";
-    private static final String WIN_LENGTH_PREFIX = "Выиграшная длинна: ";
+    private static final String WIN_LENGTH_PREFIX = "Выигрышная длинна: ";
     private static final String ICON_SETTINGS_STR = "\\img\\iconSettings.png";
     private GameWindow gameWindow;
     private JRadioButton hVa;
@@ -67,12 +67,13 @@ public class SettingsWindow extends JFrame {
         buttonStart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 buttonStartClick();
             }
 
 
         });
-buttonStart.setBackground(new Color(38, 38, 38));
+        buttonStart.setBackground(new Color(38, 38, 38));
         buttonStart.setForeground(new java.awt.Color(179, 179, 179));
         jPanel.add(buttonStart);
 
@@ -90,6 +91,8 @@ buttonStart.setBackground(new Color(38, 38, 38));
         hVh = new JRadioButton("Человек против человека");
         hVa = new JRadioButton("Человек против ИИ", true);
         ButtonGroup gameMode = new ButtonGroup();
+        hVa.setBackground(Color.white);
+        hVh.setForeground(new java.awt.Color(128, 128, 128));
         gameMode.add(hVa);
         gameMode.add(hVh);
         createRadioButton(jPanel, hVa);
@@ -102,7 +105,10 @@ buttonStart.setBackground(new Color(38, 38, 38));
         sliderFieldSize = new JSlider(MIN_FIELD_SIZE, MAX_FIELD_SIZE, MIN_FIELD_SIZE);
         sliderWinLength = new JSlider(MIN_WIN_LENGTH, MIN_FIELD_SIZE, MIN_FIELD_SIZE);
 
-        jPanel.add(new JLabel("Выберите размер поля"));
+        jLabelFieldSize.setForeground(new java.awt.Color(179, 179, 179));
+        jLabelWinLength.setForeground(new java.awt.Color(179, 179, 179));
+
+        jPanel.add(new JLabel("Выберите размер поля")).setForeground(new java.awt.Color(128, 128, 128));
         jPanel.add(jLabelFieldSize);
 
         sliderFieldSize.addChangeListener(new ChangeListener() {
@@ -127,7 +133,7 @@ buttonStart.setBackground(new Color(38, 38, 38));
 
         jPanel.add(sliderFieldSize);
 
-        jPanel.add(new JLabel("Выберите выиграшную длинну"));
+        jPanel.add(new JLabel("Выберите выигрышную длинну")).setForeground(new java.awt.Color(128, 128, 128));
         jPanel.add(jLabelWinLength);
         sliderWinLength.setBackground(Color.DARK_GRAY);
         sliderWinLength.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
@@ -135,18 +141,18 @@ buttonStart.setBackground(new Color(38, 38, 38));
     }
 
     private void buttonStartClick() {
-    int fieldSize = sliderFieldSize.getValue();
-    int winLength = sliderWinLength.getValue();
+        int fieldSize = sliderFieldSize.getValue();
+        int winLength = sliderWinLength.getValue();
 
-    int gameMode;
-    if (hVa.isSelected()){
-gameMode = Map.MODE_HVA;
-    }else if(hVh.isSelected()){
-gameMode = Map.MODE_HVH;
-    }else {
-        throw new RuntimeException("Unexpected game mode!");
-    }
-gameWindow.startNewGame(gameMode, fieldSize,fieldSize,winLength);
-    setVisible(false);
+        int gameMode;
+        if (hVa.isSelected()) {
+            gameMode = Map.MODE_HVA;
+        } else if (hVh.isSelected()) {
+            gameMode = Map.MODE_HVH;
+        } else {
+            throw new RuntimeException("Unexpected game mode!");
+        }
+        gameWindow.startNewGame(gameMode, fieldSize, fieldSize, winLength);
+        setVisible(false);
     }
 }
