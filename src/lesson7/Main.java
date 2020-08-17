@@ -1,7 +1,5 @@
 package lesson7;
 
-import javax.swing.*;
-import java.awt.*;
 /**
  * Homework for lesson #7
  * 1.Полностью разобраться с кодом (попробовать полностью самостоятельно переписать одно из окон)
@@ -12,12 +10,7 @@ import java.awt.*;
  * @since 16.08.2020
  */
 public class Main {
-
-
     public static void main(String[] args) {
         GameWindow gw = new GameWindow();
-
-
-
     }
 }
